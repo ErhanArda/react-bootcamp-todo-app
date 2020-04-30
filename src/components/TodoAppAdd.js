@@ -18,10 +18,13 @@ class TodoAppAdd extends Component {
                     e.preventDefault();
                     const newContent = this.state.value;
                     this.props.addTodo(newContent)
-
+                    this.setState({
+                        value: ""
+                    })
                 }}>
                     <TextField type="text"
                         placeholder="Add Todo"
+                        label="Task"
                         value={this.state.value}
                         onChange={(e) => {
                             this.setState({

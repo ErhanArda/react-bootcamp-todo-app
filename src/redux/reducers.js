@@ -5,7 +5,7 @@ export const todoReducer = (state = [], action) => {
                 id: Math.random(),
                 completed: false,
                 content: action.payload
-            }];
+            }]
         case 'DELETE_TODO':
             return state.filter((todo)=>todo.id !== action.payload)
 
