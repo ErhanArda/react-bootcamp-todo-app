@@ -1,9 +1,12 @@
 import React from 'react'
+import Typography from "@material-ui/core/Typography";
 
 const TodoAppTitle = () => {
     return (
         <div>
-            Todos
+            <Typography style={{ padding: 16 }} variant="h1">
+            React Redux ToDo 
+            </Typography>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux"
-import {addTodo} from "../redux/actions"
+import { Button, TextField } from "@material-ui/core";
+import { connect } from "react-redux"
+import { addTodo } from "../redux/actions"
 class TodoAppAdd extends Component {
     constructor(props) {
         super(props)
@@ -13,13 +14,13 @@ class TodoAppAdd extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={(e) => {
+                <form className="todo-form" onSubmit={(e) => {
                     e.preventDefault();
                     const newContent = this.state.value;
                     this.props.addTodo(newContent)
 
                 }}>
-                    <input type="text"
+                    <TextField type="text"
                         placeholder="Add Todo"
                         value={this.state.value}
                         onChange={(e) => {
@@ -28,15 +29,15 @@ class TodoAppAdd extends Component {
                             })
                         }}
                     />
-                    <button type="submit">Add</button>
+                    <Button type="submit">Submit</Button>
                 </form>
             </div>
         );
     }
 }
-const mapDispatchToProps ={
+const mapDispatchToProps = {
     addTodo: addTodo
 }
 
-export default connect(null,mapDispatchToProps)(TodoAppAdd);
+export default connect(null, mapDispatchToProps)(TodoAppAdd);
 

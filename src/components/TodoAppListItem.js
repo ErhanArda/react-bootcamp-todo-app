@@ -1,20 +1,24 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { toggleTodo,deleteTodo } from "../redux/actions"
+import { toggleTodo, deleteTodo } from "../redux/actions"
+import { Checkbox, IconButton, ListItem, Typography } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 
-const TodoAppListItem = ({ content, id, completed, toggleTodo,deleteTodo }) => {
+const TodoAppListItem = ({ content, id, completed, toggleTodo, deleteTodo }) => {
     return (
-        <div>
-            <span style={{
-            textDecoration: completed ? "line-through" : "initial"
-        }}
-            onClick={() => toggleTodo(id)}
-        >
-            {content}
-            
-        </span>
-            <button onClick={()=>deleteTodo(id)}>DELETE</button>
-        </div>   
+        <ListItem style={{ display: "flex" }}>
+            <Checkbox
+                onClick={() => toggleTodo(id)} />
+
+            <Typography style={{
+                textDecoration: completed ? "line-through" : "initial"
+            }}>
+                {content}
+            </Typography>
+            <IconButton onClick={() => deleteTodo(id)}>
+                <CloseIcon />
+            </IconButton>
+        </ListItem>
     )
 }
 const mapDispatchToProps = {
