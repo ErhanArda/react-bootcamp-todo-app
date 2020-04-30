@@ -6,7 +6,7 @@ const TodoAppHeader = ({addTodo}) => {
     return (
         <div>
             <TodoAppTitle />
-            <TodoAppAdd addTodo={addTodo}/>
+            <TodoAppAdd />
         </div>
     )
 }

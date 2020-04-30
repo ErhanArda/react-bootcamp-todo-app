@@ -1,17 +1,22 @@
 import React from 'react'
 import TodoAppListItem from "./TodoAppListItem"
-
+import {connect} from "react-redux"
 
 const TodoAppList = (props) => {
     return (
         <div>
             {
                 props.todos.map((todo)=>{
-                    return <TodoAppListItem {...todo} toggleTodo={props.toggleTodo}/>
+                    return <TodoAppListItem {...todo}/>
                 })
             }
-        </div>
+        </div> 
     )
 }
+const mapStateToProps = (state) =>{
+    return {
+        todos: state.todoReducer
+    }
+}
 
-export default TodoAppList
+export default connect(mapStateToProps)(TodoAppList)
