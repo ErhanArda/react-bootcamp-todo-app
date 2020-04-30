@@ -5,7 +5,7 @@ const TodoAppTitle = () => {
     return (
         <div>
             <Typography style={{ padding: 16 }} variant="h1">
-            React Redux ToDo 
+            React-Redux ToDo 
             </Typography>
         </div>
     )
