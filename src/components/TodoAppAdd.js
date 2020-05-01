@@ -17,7 +17,7 @@ class TodoAppAdd extends Component {
                 <form className="todo-form" onSubmit={(e) => {
                     e.preventDefault();
                     const newContent = this.state.value;
-                    this.state.value !== "" ? this.props.addTodo(newContent) : alert("write Todo")
+                    this.props.addTodo(newContent)
                     this.setState({
                         value: ""
                     })
@@ -32,7 +32,7 @@ class TodoAppAdd extends Component {
                             })
                         }}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button disabled={!this.state.value} type="submit">Submit</Button>
                 </form>
             </div>
         );
