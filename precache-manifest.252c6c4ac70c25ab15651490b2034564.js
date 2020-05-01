@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2efb9ca5a5690a46810596e6c6b6f418",
+    "revision": "98c49b26ed97801826217818c2340c2e",
     "url": "/react-bootcamp-todo-app/index.html"
   },
   {
-    "revision": "598a9d31d546db846b4a",
+    "revision": "345ea4e8fb53bbe0462e",
     "url": "/react-bootcamp-todo-app/static/css/main.d1b05096.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-bootcamp-todo-app/static/js/2.b7f2fb11.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "598a9d31d546db846b4a",
-    "url": "/react-bootcamp-todo-app/static/js/main.a11ca66f.chunk.js"
+    "revision": "345ea4e8fb53bbe0462e",
+    "url": "/react-bootcamp-todo-app/static/js/main.baaf46bb.chunk.js"
   },
   {
     "revision": "4f175e16cd77edc30281",
