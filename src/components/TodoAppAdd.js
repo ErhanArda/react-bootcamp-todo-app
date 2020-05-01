@@ -17,7 +17,7 @@ class TodoAppAdd extends Component {
                 <form className="todo-form" onSubmit={(e) => {
                     e.preventDefault();
                     const newContent = this.state.value;
-                    this.props.addTodo(newContent)
+                    this.state.value !== "" ? this.props.addTodo(newContent) : alert("write Todo")
                     this.setState({
                         value: ""
                     })
