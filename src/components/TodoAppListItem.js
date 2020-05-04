@@ -13,7 +13,15 @@ const TodoAppListItem = ({ title,description,priority, id, completed, toggleTodo
             <Typography style={{
                 textDecoration: completed ? "line-through" : "initial"
             }}>
+                <div>
                 {title}
+                </div>
+                <div>
+                {description}
+                </div>
+                <div>
+                    <strong>Priority:</strong>{priority}
+                </div>
             </Typography>
             <IconButton onClick={() => deleteTodo(id)}>
                 <CloseIcon />

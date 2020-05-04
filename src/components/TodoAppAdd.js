@@ -1,111 +1,91 @@
+/* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
 import { Button, TextField, Checkbox, FormLabel, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { connect } from "react-redux"
 import { addTodo } from "../redux/actions"
+import { Formik } from "formik"
 class TodoAppAdd extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            title: "",
-            description: "",
-            completed: false,
-            priority: "high",
-            //dueDate: ""
-        }
     }
     render() {
         return (
             <div>
-                <form className="todo-form" onSubmit={(e) => {
-                    e.preventDefault();
-                    //const newContent = this.state.value;
-                    
-                    const newTodoObject = {
-                        title:this.state.title,
-                        description: this.state.description,
-                        completed: this.state.completed,
-                        priority: this.state.priority ,
-                    
-                    }
-                    this.props.addTodo(newTodoObject)
-                    this.setState({
-
+                <Formik
+                    initialValues={{
                         title: "",
                         description: "",
                         completed: false,
                         priority: "high",
-                        dueDate: ""
-                    })
-                }}>
-                    <div>
-                        <TextField type="text"
-                            placeholder="Add Todo Title"
-                            label="Title"
-                            value={this.state.title}
-                            onChange={(e) => {
-                                this.setState({
-                                    title: e.target.value,
-                                })
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <TextField type="text"
-                            placeholder="Add Todo Description"
-                            label="Description"
-                            value={this.state.description}
-                            onChange={(e) => {
-                                this.setState({
-                                    description: e.target.value,
-                                })
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Checkbox type="checkbox"
-                            name="completed"
-                            id="completed-todo-field"
-                            value={this.state.completed}
-                            onChange={(e) => {
-                                this.setState({
-                                    completed: e.target.value,
-                                })
-                            }}
-                        />
-                        <FormLabel htmlFor="completed-todo-field">Completed</FormLabel>
-                    </div>
-                    <div>
-                        <Checkbox type="checkbox"
-                            name="completed"
-                            id="completed-todo-field"
-                            value={this.state.completed}
-                            onChange={(e) => {
-                                this.setState({
-                                    completed: e.target.value,
-                                })
-                            }}
-                        />
-                        <FormLabel htmlFor="uncompleted-todo-field">Not Completed</FormLabel>
-                    </div>
-                    <div>
-                        <FormControl>
-                            <Select value= { this.state.priority}
-                            onChange = {(e)=> {
-                                this.setState({
-                                    priority: e.target.value
-                                })
-                            }}
-                            >
-                                <MenuItem value="high">High</MenuItem>
-                                <MenuItem value="medium">Medium</MenuItem>
-                                <MenuItem value="low">Low</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </div>
-                    <Button disabled={!this.state.title} type="submit">Submit</Button>
-                </form>
-            </div>
+                    }}
+                    onSubmit={(values,{resetForm}) => {
+                        this.props.addTodo(values)
+                        resetForm({})
+                    }}
+                >
+                    {({
+                        values,
+                        handleChange,
+                        handleSubmit,
+                        setFieldValue,
+                        isSubmitting
+                    }) => (
+                            <form onSubmit={handleSubmit}>
+                                <div>
+                                    <TextField type="text"
+                                        name="title"
+                                        placeholder="Add Todo Title"
+                                        label="Title"
+                                        value={values.title}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField type="text"
+                                        placeholder="Add Todo Description"
+                                        label="Description"
+                                        name="description"
+                                        value={values.description}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div>
+                                    <Checkbox type="checkbox"
+                                        name="completed"
+                                        id="completed-todo-field"
+                                        value={values.completed}
+                                        checked={values.completed}
+                                        onChange={() => { setFieldValue("completed", true) }}
+                                    />
+                                    <FormLabel htmlFor="completed-todo-field">Completed</FormLabel>
+                                </div>
+                                <div>
+                                    <Checkbox type="checkbox"
+                                        name="completed"
+                                        id="completed-todo-field"
+                                        value={values.completed}
+                                        checked={!values.completed}
+                                        onChange={() => { setFieldValue("completed", false) }}
+                                    />
+                                    <FormLabel htmlFor="uncompleted-todo-field">Not Completed</FormLabel>
+                                </div>
+                                <div>
+                                    <FormControl>
+                                        <Select name="priority"
+                                            value={values.priority}
+                                            onChange={handleChange}
+                                        >
+                                            <MenuItem value="high">High</MenuItem>
+                                            <MenuItem value="medium">Medium</MenuItem>
+                                            <MenuItem value="low">Low</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </div>
+                                <Button disabled={!values.title} type="submit">Submit</Button>
+                            </form>
+                        )}
+                </Formik>
+            </div >
         );
     }
 }
