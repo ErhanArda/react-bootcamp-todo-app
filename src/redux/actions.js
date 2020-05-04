@@ -1,6 +1,6 @@
 import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, SHOW_NOTIFICATION, HIDE_NOTIFICATION } from "./actionTypes"
 
-export const addTodo = (content) => {
+export const addTodo = (newTodoObject) => {
     //before thunk
     // return {
     //     type: ADD_TODO,
@@ -9,9 +9,9 @@ export const addTodo = (content) => {
     return (dispatch) => {
         dispatch({
             type: ADD_TODO,
-            payload: content
+            payload: newTodoObject
         });
-        dispatch(showNotification(`${content} added`))
+        dispatch(showNotification(`${newTodoObject.title} added`))
     }
 }
 export const deleteTodo = (id) => {

@@ -4,7 +4,7 @@ import { toggleTodo, deleteTodo } from "../redux/actions"
 import { Checkbox, IconButton, ListItem, Typography } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
-const TodoAppListItem = ({ content, id, completed, toggleTodo, deleteTodo }) => {
+const TodoAppListItem = ({ title,description,priority, id, completed, toggleTodo, deleteTodo }) => {
     return (
 <ListItem style={{ display: "center",flexDirection: "row",alignItems: "center",justifyContent: "center" }}>
             <Checkbox
@@ -13,7 +13,7 @@ const TodoAppListItem = ({ content, id, completed, toggleTodo, deleteTodo }) => 
             <Typography style={{
                 textDecoration: completed ? "line-through" : "initial"
             }}>
-                {content}
+                {title}
             </Typography>
             <IconButton onClick={() => deleteTodo(id)}>
                 <CloseIcon />

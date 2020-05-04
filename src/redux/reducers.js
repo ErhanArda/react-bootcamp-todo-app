@@ -3,11 +3,7 @@ import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, SHOW_NOTIFICATION, HIDE_NOTIFICATIO
 export const todoReducer = (state = [], action) => {
     switch (action.type) {
         case ADD_TODO:
-            return [...state, {
-                id: Math.random(),
-                completed: false,
-                content: action.payload
-            }]
+            return [...state, {id: Math.random(),...action.payload}]
         case DELETE_TODO:
             return state.filter((todo) => todo.id !== action.payload)
 
