@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, SHOW_NOTIFICATION } from "./actionTypes"
+import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, SHOW_NOTIFICATION, HIDE_NOTIFICATION } from "./actionTypes"
 
 export const addTodo = (content) => {
     //before thunk
@@ -11,22 +11,44 @@ export const addTodo = (content) => {
             type: ADD_TODO,
             payload: content
         });
-        dispatch({
-            type: SHOW_NOTIFICATION,
-            payload: `${content} added`
-        })
+        dispatch(showNotification(`${content} added`))
     }
 }
 export const deleteTodo = (id) => {
-    return {
-        type: DELETE_TODO,
-        payload: id
+    return (dispatch) => {
+        dispatch({
+            type: DELETE_TODO,
+            payload: id
+        });
+        dispatch(showNotification("Item removed"))
     }
 }
 
 export const toggleTodo = (id) => {
+    return (dispatch) => {
+        dispatch({
+            type: TOGGLE_TODO,
+            payload: id
+        })
+        dispatch(showNotification("toggled"))
+    }
+}
+
+
+export const showNotification = (content) => {
+    return (dispatch) => {
+        dispatch({
+            type: SHOW_NOTIFICATION,
+            payload: content
+        })
+        setTimeout(() => {
+            dispatch(hideNotification())
+        }, 2000);
+    }
+}
+
+export const hideNotification = (content) => {
     return {
-        type: TOGGLE_TODO,
-        payload: id
+        type: HIDE_NOTIFICATION,
     }
 }
