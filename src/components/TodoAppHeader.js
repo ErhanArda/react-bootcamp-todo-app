@@ -2,10 +2,10 @@ import React from 'react'
 import TodoAppTitle from './TodoAppTitle'
 import TodoAppAdd from './TodoAppAdd'
 
-const TodoAppHeader = ({addTodo}) => {
+const TodoAppHeader = () => {
     return (
         <div>
-            <TodoAppTitle />
+            <TodoAppTitle title="React Redux Todo"/>
             <TodoAppAdd />
         </div>
     )
