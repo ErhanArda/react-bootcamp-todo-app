@@ -6,7 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 
 const TodoAppListItem = ({ content, id, completed, toggleTodo, deleteTodo }) => {
     return (
-        <ListItem style={{ display: "flex" }}>
+<ListItem style={{ display: "center",flexDirection: "row",alignItems: "center",justifyContent: "center" }}>
             <Checkbox
                 onClick={() => toggleTodo(id)} />
 
