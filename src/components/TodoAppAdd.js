@@ -7,7 +7,9 @@ import { Formik } from "formik"
 import * as Yup from "yup"
 
 const todoAddValidation = Yup.object().shape({
-    title: Yup.string().required("You can't add todo without entering title!").max(25, "You can't enter more than 25 characters ")
+    title: Yup.string().required("You can't add todo without entering title!").max(25, "You can't enter more than 25 characters"),
+    description: Yup.string().min(5,"You can't enter less than 5 characters").max(50, "You can't enter more than 50 characters")
+
 });
 
 
@@ -64,6 +66,9 @@ class TodoAppAdd extends Component {
                                         onChange={handleChange}
                                     />
                                 </div>
+                                {
+                                    errors.description && <div><h4 style={{color:"red"}}>{errors.description}</h4></div>
+                                }
                                 <div>
                                     <Checkbox type="checkbox"
                                         name="completed"
@@ -96,7 +101,9 @@ class TodoAppAdd extends Component {
                                         </Select>
                                     </FormControl>
                                 </div>
-                                <Button type="submit">Submit</Button>
+                                <Button type="submit" style={{
+                                    opacity: Object.keys(errors).length > 0 ? "0.2" : "1" 
+                                }}>Submit</Button>
                                 {/* <Button disabled={!values.title} type="submit">Submit</Button> */}
                             </form>
                         )
