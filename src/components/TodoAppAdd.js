@@ -42,7 +42,7 @@ class TodoAppAdd extends Component {
                         setFieldValue,
                         isSubmitting
                     }) => {
-                        console.log("errors", errors)
+                        // console.log("errors", errors)
                         return (
                             <form onSubmit={handleSubmit}>
                                 <div>
@@ -102,7 +102,7 @@ class TodoAppAdd extends Component {
                                     </FormControl>
                                 </div>
                                 <Button type="submit" style={{
-                                    opacity: Object.keys(errors).length > 0 ? "0.2" : "1" 
+                                    opacity: (Object.keys(errors).length > 0) || isSubmitting ? "0.2" : "1"  
                                 }}>Submit</Button>
                                 {/* <Button disabled={!values.title} type="submit">Submit</Button> */}
                             </form>
