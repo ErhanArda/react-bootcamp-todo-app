@@ -4,6 +4,14 @@ import { Button, TextField, Checkbox, FormLabel, FormControl, InputLabel, Select
 import { connect } from "react-redux"
 import { addTodo } from "../redux/actions"
 import { Formik } from "formik"
+import * as Yup from "yup"
+
+const todoAddValidation = Yup.object().shape({
+    title: Yup.string().required("You can't add todo without entering title!").max(25, "You can't enter more than 25 characters ")
+});
+
+
+
 class TodoAppAdd extends Component {
     constructor(props) {
         super(props)
@@ -18,18 +26,22 @@ class TodoAppAdd extends Component {
                         completed: false,
                         priority: "high",
                     }}
-                    onSubmit={(values,{resetForm}) => {
+                    validationSchema={todoAddValidation}
+                    onSubmit={(values, { resetForm }) => {
                         this.props.addTodo(values)
                         resetForm({})
                     }}
                 >
                     {({
                         values,
+                        errors,
                         handleChange,
                         handleSubmit,
                         setFieldValue,
                         isSubmitting
-                    }) => (
+                    }) => {
+                        console.log("errors", errors)
+                        return (
                             <form onSubmit={handleSubmit}>
                                 <div>
                                     <TextField type="text"
@@ -40,6 +52,9 @@ class TodoAppAdd extends Component {
                                         onChange={handleChange}
                                     />
                                 </div>
+                                {
+                                    errors.title && <div><h4 style={{ color: "red" }}>{errors.title}</h4></div>
+                                }
                                 <div>
                                     <TextField type="text"
                                         placeholder="Add Todo Description"
@@ -81,9 +96,11 @@ class TodoAppAdd extends Component {
                                         </Select>
                                     </FormControl>
                                 </div>
-                                <Button disabled={!values.title} type="submit">Submit</Button>
+                                <Button type="submit">Submit</Button>
+                                {/* <Button disabled={!values.title} type="submit">Submit</Button> */}
                             </form>
-                        )}
+                        )
+                    }}
                 </Formik>
             </div >
         );
